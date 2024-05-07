@@ -3,9 +3,13 @@ javafx与springboot的自动集成
 
 
 ## 代码示例
-0. 导入依赖
+0. 导入依赖，仓库地址：https://central.sonatype.com/artifact/io.github.jxch/capital-javafx-spring-boot-starter
 ```xml
-
+<dependency>
+    <groupId>io.github.jxch</groupId>
+    <artifactId>capital-javafx-spring-boot-starter</artifactId>
+    <version>${capital-javafx.version}</version>
+</dependency>
 ```
 1. 定义主界面的FXML文件，并放置于resources文件夹下（同时支持自动加载css文件，默认资源路径：`/fx`）
 ```xml
