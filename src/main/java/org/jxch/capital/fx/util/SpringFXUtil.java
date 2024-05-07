@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class SpringFXUtil implements ApplicationContextAware, InitializingBean {
@@ -30,7 +31,7 @@ public class SpringFXUtil implements ApplicationContextAware, InitializingBean {
     @SneakyThrows
     public static Scene getControllerScene(Class<?> controllerClass) {
         Scene scene = new Scene(getFXMLLoader(controllerClass).load());
-        stylesheets.forEach(css -> scene.getStylesheets().add(css));
+        Optional.of(stylesheets).ifPresent(sheets -> sheets.forEach(css -> scene.getStylesheets().add(css)));
         return scene;
     }
 
@@ -50,7 +51,8 @@ public class SpringFXUtil implements ApplicationContextAware, InitializingBean {
     public void afterPropertiesSet() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         FXAutoConfig config = context.getBean(FXAutoConfig.class);
-        stylesheets = Arrays.stream(resolver.getResources(config.getCssPath())).map(SpringFXUtil::readStylesheet).toList();
+        Optional.of(resolver.getResources(config.getCssPath())).ifPresent(resources ->
+                stylesheets = Arrays.stream(resources).map(SpringFXUtil::readStylesheet).toList());
     }
 
     @SneakyThrows
