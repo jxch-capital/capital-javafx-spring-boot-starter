@@ -40,7 +40,7 @@ public class PlatformRunLaterPointcutAdvisor extends StaticMethodMatcherPointcut
             }
         });
 
-        return result;
+        return result.get();
     }
 
     @Override
