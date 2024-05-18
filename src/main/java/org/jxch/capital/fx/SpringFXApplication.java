@@ -14,6 +14,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 public class SpringFXApplication extends Application implements CommandLineRunner, ApplicationContextAware, ApplicationListener<ContextClosedEvent> {
     private static Class<?> controllerClazz;
@@ -33,7 +35,9 @@ public class SpringFXApplication extends Application implements CommandLineRunne
 
     @Override
     public void stop() {
-        SpringApplication.exit(context);
+        if (Objects.nonNull(context)) {
+            SpringApplication.exit(context);
+        }
     }
 
     @Override
