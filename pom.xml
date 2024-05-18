@@ -6,7 +6,7 @@
 
     <groupId>io.github.jxch</groupId>
     <artifactId>capital-javafx-spring-boot-starter</artifactId>
-    <version>3.2.5-alpha.4</version>
+    <version>3.2.5-alpha.4.3.3</version>
     <name>capital-javafx-spring-boot-starter</name>
     <description>JavaFX 集成 SpringBoot</description>
     <url>https://github.com/jxch-capital/capital-javafx-spring-boot-starter</url>
