@@ -15,6 +15,7 @@ import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Component
 public class SpringFXApplication extends Application implements CommandLineRunner, ApplicationContextAware, ApplicationListener<ContextClosedEvent> {
@@ -52,7 +53,9 @@ public class SpringFXApplication extends Application implements CommandLineRunne
 
     public static ApplicationContext run(Class<?> springBootConfigClazz, Class<?> controllerClazz, String... args) {
         SpringFXApplication.controllerClazz = controllerClazz;
-        return SpringApplication.run(springBootConfigClazz, args);
+        SpringApplication springApplication = new SpringApplication(springBootConfigClazz);
+        springApplication.setSources(Set.of(SpringFXApplication.class.getPackageName(), springBootConfigClazz.getPackageName(), controllerClazz.getPackageName()));
+        return springApplication.run(args);
     }
 
 }

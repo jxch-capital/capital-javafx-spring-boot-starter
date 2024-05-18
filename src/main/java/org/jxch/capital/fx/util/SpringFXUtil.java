@@ -4,7 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import lombok.SneakyThrows;
 import org.jxch.capital.fx.bind.PCBindHolder;
-import org.jxch.capital.fx.config.FXAutoConfig;
+import org.jxch.capital.fx.config.FXConfig;
 import org.jxch.capital.fx.register.FXMLLoaderRegister;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -50,7 +50,7 @@ public class SpringFXUtil implements ApplicationContextAware, InitializingBean {
     @SneakyThrows
     public void afterPropertiesSet() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        FXAutoConfig config = context.getBean(FXAutoConfig.class);
+        FXConfig config = context.getBean(FXConfig.class);
         Optional.of(resolver.getResources(config.getCssPath())).ifPresent(resources ->
                 stylesheets = Arrays.stream(resources).map(SpringFXUtil::readStylesheet).toList());
     }

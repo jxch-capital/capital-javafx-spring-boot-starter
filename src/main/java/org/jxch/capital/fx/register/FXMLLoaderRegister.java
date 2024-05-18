@@ -4,7 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.XmlUtil;
 import lombok.NonNull;
 import lombok.SneakyThrows;
-import org.jxch.capital.fx.config.FXAutoConfig;
+import org.jxch.capital.fx.config.FXConfig;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
@@ -28,7 +28,7 @@ public class FXMLLoaderRegister implements BeanDefinitionRegistryPostProcessor, 
     @Override
     @SneakyThrows
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        String fxmlResources = Objects.requireNonNull(environment.getProperty(FXAutoConfig.FXML_SCAN, FXAutoConfig.FXML_SCAN_DEFAULT));
+        String fxmlResources = Objects.requireNonNull(environment.getProperty(FXConfig.FXML_SCAN, FXConfig.FXML_SCAN_DEFAULT));
         for (Resource resource : resolver.getResources(fxmlResources)) {
             GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
             beanDefinition.setBeanClass(FXMLLoaderFactoryBean.class);
